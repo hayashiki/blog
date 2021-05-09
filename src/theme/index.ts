@@ -9,7 +9,7 @@ const getTheme = (mode: any) =>
       },
       palette: mode === "light" ? light : dark,
       typography: {
-        fontFamily: 'Noto Sans JP', //;"Mono", // Lato.
+        fontFamily: "Noto Sans JP", //;"Mono", // Lato.
         h1: {
           fontSize: "1.728rem",
           fontWeight: 700,
@@ -20,24 +20,24 @@ const getTheme = (mode: any) =>
         h2: {
           fontSize: "1.6em",
           fontWeight: 700,
-          borderBottom: '1px solid rgba(92,147,187,.17)',
-          paddingBottom: '.2em',
-          marginBottom: '1.1rem'
+          borderBottom: "1px solid rgba(92,147,187,.17)",
+          paddingBottom: ".2em",
+          marginBottom: "1.1rem",
         },
         h3: {
           fontSize: "1.2em",
-          fontWeight: 'bold',
+          fontWeight: "bold",
         },
         h4: {
           fontSize: "1.0em",
-          fontWeight: 'bold',
+          fontWeight: "bold",
         },
         body1: {
           fontSize: 16,
         },
         body2: {
           fontSize: 16,
-        }
+        },
       },
       zIndex: {
         appBar: 1200,

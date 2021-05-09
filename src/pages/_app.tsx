@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       <Head>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          content="width=device-width,minimum-scale=1,initial-scale=1"
         />
       </Head>
       <Component {...pageProps} />
