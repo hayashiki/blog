@@ -22,8 +22,8 @@ import { ArticleProps } from "@/pages/articles/[slug]";
 import Section from "@/components/Section";
 // import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism"
 import { okaidia as theme } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import coy from "react-syntax-highlighter/dist/cjs/styles/prism/coy"
-import {Theme} from "@material-ui/core/styles/createMuiTheme";
+import coy from "react-syntax-highlighter/dist/cjs/styles/prism/coy";
+import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
 const useStyles = makeStyles((theme: Theme) => ({
   section: {
@@ -134,7 +134,7 @@ export default Article;
 type PrismRenderProps = {
   value: string;
   language?: string;
-}
+};
 
 const CodeBlock: React.FC<PrismRenderProps> = ({ language, value }) => {
   return (
@@ -142,7 +142,7 @@ const CodeBlock: React.FC<PrismRenderProps> = ({ language, value }) => {
       language={language}
       style={theme}
       showLineNumbers={false}
-      customStyle={{ fontSize: 'inherit', background: "#282c34" }}
+      customStyle={{ fontSize: "inherit", background: "#282c34" }}
     >
       {value}
     </SyntaxHighlighter>

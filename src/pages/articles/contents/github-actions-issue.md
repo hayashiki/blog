@@ -5,7 +5,7 @@ timestamp: '2021-03-8T04:13:56+00:00'
 date: 2021/3/4
 tag: GitHub,CI/CD
 tags:
-  - Github
+  - GitHub
   - Workflow
   - CI/CD
   - Automation  
