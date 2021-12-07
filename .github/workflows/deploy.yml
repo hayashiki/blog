@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GCP_PROJECT: oimonote
+      GCP_PROJECT: oimonotes
       GCP_PROJECT_NUM: 353815249791
 
     # Add "id-token" with the intended permissions.
