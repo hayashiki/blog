@@ -6,6 +6,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      GCP_PROJECT: oimonote
+      GCP_PROJECT_NUM: 353815249791
+
     # Add "id-token" with the intended permissions.
     permissions:
       contents: read
@@ -21,7 +25,7 @@ jobs:
         uses: 'google-github-actions/auth@v0.3.1'
         with:
           create_credentials_file: true
-          workload_identity_provider: 'projects/353815249791/locations/global/workloadIdentityPools/github-actions/providers/gha-provider'
+          workload_identity_provider: "projects/${{ env.GCP_PROJECT_NUM }}/locations/global/workloadIdentityPools/github-actions/providers/gha-provider"
           service_account: 'oimonotes@appspot.gserviceaccount.com'
 
       - name: Check out code into the Go module directory
@@ -32,26 +36,91 @@ jobs:
         run: |-
           gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
           gcloud app deploy -q
-
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Setup Node 16.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
-
-      - name: Install
-        run: yarn install --frozen-lockfile
-
-      - name: Build
-        run: |
-          yarn build
+#
+#      - name: Get yarn cache
+#        id: yarn-cache
+#        run: echo "::set-output name=dir::$(yarn cache dir)"
+#
+#      - uses: actions/cache@v2
+#        with:
+#          path: ${{ steps.yarn-cache.outputs.dir }}
+#          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#          restore-keys: |
+#            ${{ runner.os }}-yarn-
+#
+#      - name: Setup Node 16.x
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 16.x
+#
+#      - name: Install
+#        run: yarn install --frozen-lockfile
+#
+#      - name: Build
+#        run: |
+#          yarn build
+##
+#
+#name: Deploy
+#on:
+#  push:
+##    paths:
+##      - ".github/workflows/deploy.yml"
+##    branch:
+##      - run
+#env:
+#  GCP_PROJECT: oimonote
+#  GCP_PROJECT_NUM: 353815249791
+#jobs:
+#  deploy:
+#    runs-on: ubuntu-latest
+#
+#    permissions:
+#      contents: read
+#      id-token: 'write'
+#
+#    steps:
+#      - uses: 'google-github-actions/setup-gcloud@master'
+#        with:
+#          project_id: ${{ env.GCP_PROJECT }}
+#
+#      - id: 'auth'
+#        name: 'Authenticate to Google Cloud'
+#        uses: 'google-github-actions/auth@v0.3.1'
+#        with:
+#          create_credentials_file: true
+#          workload_identity_provider: 'projects/${{ env.GCP_PROJECT_NUM }}/locations/global/workloadIdentityPools/github-actions/providers/gha-provider'
+#          service_account: ${{ env.GCP_PROJECT }}@appspot.gserviceaccount.com
+##          service_account: 'ci-user@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com'
+#
+#      - name: Checclut
+#        uses: actions/checkout@v2
+#
+#      - name: Get yarn cache
+#        id: yarn-cache
+#        run: echo "::set-output name=dir::$(yarn cache dir)"
+#
+#      - uses: actions/cache@v2
+#        with:
+#          path: ${{ steps.yarn-cache.outputs.dir }}
+#          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#          restore-keys: |
+#            ${{ runner.os }}-yarn-
+#
+#      - name: Setup Node 16.x
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 16.x
+#
+#      - name: Install
+#        run: yarn install --frozen-lockfile
+#
+#      - name: Build
+#        run: |
+#          yarn build
+#
+#      - id: 'gcloud'
+#        name: 'gcloud'
+#        run: |-
+#          gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
+#          gcloud app deploy -q
