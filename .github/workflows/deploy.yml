@@ -20,15 +20,7 @@ jobs:
         with:
           project_id: oimonotes
 
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0.3.1'
-        with:
-          create_credentials_file: true
-          workload_identity_provider: "projects/${{ env.GCP_PROJECT_NUM }}/locations/global/workloadIdentityPools/github-actions/providers/gha-provider"
-          service_account: "ci-user@${{ env.GCP_PROJECT_NUM }}.iam.gserviceaccount.com"
-
-      - name: Checclut
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Get yarn cache
@@ -50,6 +42,17 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile
 
+      - name: Build
+        run: yarn export
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0.3.1'
+        with:
+          create_credentials_file: true
+          workload_identity_provider: "projects/${{ env.GCP_PROJECT_NUM }}/locations/global/workloadIdentityPools/github-actions/providers/gha-provider"
+          service_account: "ci-user@${{ env.GCP_PROJECT_NUM }}.iam.gserviceaccount.com"
+
       - id: 'gcloud'
         name: 'gcloud'
         run: |-
@@ -57,4 +60,4 @@ jobs:
 
       - name: Build
         run: |
-          make deploy
+          gcloud app deploy -q
