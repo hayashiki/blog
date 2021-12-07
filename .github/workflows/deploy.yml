@@ -59,4 +59,5 @@ jobs:
       - name: Deploy
 #        if: contains(github.ref, 'tags/v')
         run: |
-          make deploy
+          yarn build
+          gcloud app deploy -q
