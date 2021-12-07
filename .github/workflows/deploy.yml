@@ -27,7 +27,8 @@ jobs:
         with:
           create_credentials_file: true
           workload_identity_provider: 'projects/${{ env.GCP_PROJECT_NUM }}/locations/global/workloadIdentityPools/github-actions/providers/gha-provider'
-          service_account: 'ci-user@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com'
+          service_account: ${{ env.GCP_PROJECT }}@appspot.gserviceaccount.com
+#          service_account: 'ci-user@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com'
 
       - name: Checclut
         uses: actions/checkout@v2
