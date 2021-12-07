@@ -51,13 +51,12 @@ jobs:
       - name: Install
         run: yarn install --frozen-lockfile
 
+      - name: Build
+        run: |
+          yarn build
+
       - id: 'gcloud'
         name: 'gcloud'
         run: |-
           gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
-
-      - name: Deploy
-#        if: contains(github.ref, 'tags/v')
-        run: |
-          yarn build
           gcloud app deploy -q
