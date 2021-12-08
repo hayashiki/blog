@@ -3,10 +3,10 @@
  *
  * You may delete this file and its occurrences from the project filesystem if you are using GatsbyJS or react-scripts version
  */
-import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheets } from "@material-ui/core/styles";
-import BLOG from "../../blog.config";
+import React from 'react'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { ServerStyleSheets } from '@material-ui/core/styles'
+import BLOG from '../../blog.config'
 
 export default class MyDocument extends Document {
   render() {
@@ -34,19 +34,13 @@ export default class MyDocument extends Document {
           <meta property="og:type" content="website" />
           <meta property="og:image" content="" />
           <meta property="og:title" content="hayashida.dev | TechBlog" />
-          <meta
-            property="og:description"
-            content="web pages created by hayashiki"
-          />
+          <meta property="og:description" content="web pages created by hayashiki" />
           <meta property="og:url" content="" />
           <link
             href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap"
             rel="stylesheet"
           />
-          <script
-            src="https://kit.fontawesome.com/4c273e6d43.js"
-            crossOrigin="anonymous"
-          />
+          <script src="https://kit.fontawesome.com/4c273e6d43.js" crossOrigin="anonymous" />
         </Head>
         <body>
           <Main />
@@ -68,7 +62,7 @@ export default class MyDocument extends Document {
           />
         </body>
       </Html>
-    );
+    )
   }
 }
 
@@ -98,22 +92,19 @@ MyDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
-  const sheets = new ServerStyleSheets();
-  const originalRenderPage = ctx.renderPage;
+  const sheets = new ServerStyleSheets()
+  const originalRenderPage = ctx.renderPage
 
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-    });
+    })
 
-  const initialProps = await Document.getInitialProps(ctx);
+  const initialProps = await Document.getInitialProps(ctx)
 
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: [
-      ...React.Children.toArray(initialProps.styles),
-      sheets.getStyleElement(),
-    ],
-  };
-};
+    styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
+  }
+}

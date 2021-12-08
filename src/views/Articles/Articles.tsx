@@ -1,26 +1,20 @@
-import Grid from "@material-ui/core/Grid";
-import {
-  createStyles,
-  List,
-  ListItem,
-  makeStyles,
-  Theme,
-} from "@material-ui/core";
-import { ArticleProps } from "@/pages/articles/[slug]";
-import Link from "next/link";
-import React from "react";
-import Section from "@/components/Section";
+import Grid from '@material-ui/core/Grid'
+import { createStyles, List, ListItem, makeStyles, Theme } from '@material-ui/core'
+import { ArticleProps } from '@/pages/articles/[slug]'
+import Link from 'next/link'
+import React from 'react'
+import Section from '@/components/Section'
 
 const useGrid = makeStyles((theme: Theme) =>
   createStyles({
     nav: {
-      marginTop: "2rem",
-      marginBottom: "2rem",
-      backgroundColor: "white",
+      marginTop: '2rem',
+      marginBottom: '2rem',
+      backgroundColor: 'white',
     },
     root: {
-      marginLeft: "1rem",
-      marginRight: "1rem",
+      marginLeft: '1rem',
+      marginRight: '1rem',
     },
     paper: {
       padding: theme.spacing(2),
@@ -29,15 +23,15 @@ const useGrid = makeStyles((theme: Theme) =>
     noPaddingBottom: {
       paddingBottom: 0,
     },
-  })
-);
+  }),
+)
 
 type ArticlesProps = {
-  articles: ArticleProps[];
-};
+  articles: ArticleProps[]
+}
 
 const Articles: React.FC<ArticlesProps> = ({ articles }) => {
-  const classes = useGrid();
+  const classes = useGrid()
 
   return (
     <Section className={classes.noPaddingBottom}>
@@ -45,11 +39,7 @@ const Articles: React.FC<ArticlesProps> = ({ articles }) => {
         <List>
           {articles.map((article: ArticleProps, i: number) => (
             <ListItem key={i}>
-              <Link
-                href="/articles/[slug]"
-                as={"/articles/" + article.metadata.slug}
-                passHref
-              >
+              <Link href="/articles/[slug]" as={'/articles/' + article.metadata.slug} passHref>
                 <div>{article.metadata.title}</div>
               </Link>
               <div>{article.metadata.date}</div>
@@ -58,7 +48,7 @@ const Articles: React.FC<ArticlesProps> = ({ articles }) => {
         </List>
       </Grid>
     </Section>
-  );
-};
+  )
+}
 
-export default Articles;
+export default Articles
