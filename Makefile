@@ -12,12 +12,6 @@ tag:
 	git tag -a "v$(VERSION)" -m "Release $(VERSION)"
 	git push --tags
 
-lint:
-	golint -set_exit_status ./...
-
-vet:
-	go vet ./...
-
 dev: ## start develop server
 	yarn dev
 
