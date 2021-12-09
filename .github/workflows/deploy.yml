@@ -2,8 +2,9 @@ name: Deploy
 
 on:
   push:
-    branches-ignore:
+    branches:
       - 'main'
+  pull_request:
 jobs:
   deploy:
     runs-on: ubuntu-latest
