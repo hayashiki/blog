@@ -1,20 +1,20 @@
-VERSION := $$(make -s show-version)
+CURRENT_REVISION := $(shell git rev-parse --short HEAD)
+VERSION := "TODO"
 GCP_PROJECT := $(shell gcloud config get-value project)
 
-.PHONY: show-version
-show-version: $(GOBIN)/gobump
-	@gobump show -r .
+.DEFAULT_GOAL := help
+.PHONY: $(shell grep -E '^[a-zA-Z_-]+:' $(MAKEFILE_LIST) | sed 's/://')
 
-.PHONY: tag
+help: ## Show help
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
 tag:
 	git tag -a "v$(VERSION)" -m "Release $(VERSION)"
 	git push --tags
 
-.PHONY: lint
 lint:
 	golint -set_exit_status ./...
 
-.PHONY: vet
 vet:
 	go vet ./...
 
@@ -25,13 +25,12 @@ fmt: ## format
 	yarn fmt
 	yarn lint
 
-generate: ## exec after editing query
-	yarn generate
-
 open: ## open app
 	gcloud app browse
 
-deploy:
+deploy: ## localでデプロイ
 	yarn export
 	gcloud app deploy -q
 
+fmt-markdown: ## markdownをフォーマットする
+	docker run --rm -v "$(pwd):/data" -e INPUT_CONFIG=/data/.markdownlint.yml avtodev/markdown-lint:v1 /data/contents
