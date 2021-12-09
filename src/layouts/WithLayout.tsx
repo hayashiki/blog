@@ -1,35 +1,35 @@
-import { useEffect, useState } from "react";
-import { ThemeProvider } from "@material-ui/styles";
-import { CssBaseline, Paper } from "@material-ui/core";
-import getTheme from "../theme";
+import { useEffect, useState } from 'react'
+import { ThemeProvider } from '@material-ui/styles'
+import { CssBaseline, Paper } from '@material-ui/core'
+import getTheme from '../theme'
 
 export const useDarkMode = () => {
-  const [themeMode, setTheme] = useState<string>("light");
-  const [mountedComponent, setMountedComponent] = useState<boolean>(false);
+  const [themeMode, setTheme] = useState<string>('light')
+  const [mountedComponent, setMountedComponent] = useState<boolean>(false)
 
   const setMode = (mode: string) => {
-    window.localStorage.setItem("themeMode", mode);
-    setTheme(mode);
-  };
+    window.localStorage.setItem('themeMode', mode)
+    setTheme(mode)
+  }
 
   const themeToggler = () => {
-    themeMode === "light" ? setMode("dark") : setMode("light");
-  };
+    themeMode === 'light' ? setMode('dark') : setMode('light')
+  }
 
   useEffect(() => {
-    const localTheme = window.localStorage.getItem("themeMode");
-    localTheme ? setTheme(localTheme) : setMode("light");
-    setMountedComponent(true);
-  }, []);
+    const localTheme = window.localStorage.getItem('themeMode')
+    localTheme ? setTheme(localTheme) : setMode('light')
+    setMountedComponent(true)
+  }, [])
 
-  return [themeMode, themeToggler, mountedComponent];
-};
+  return [themeMode, themeToggler, mountedComponent]
+}
 
 type Props = {
-  layout: any;
-  component: any;
-  [x: string]: any;
-};
+  layout: any
+  component: any
+  [x: string]: any
+}
 
 export default function WithLayout({
   component: Component,
@@ -38,14 +38,14 @@ export default function WithLayout({
 }: Props): JSX.Element {
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
+    const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
-      jssStyles.parentElement?.removeChild(jssStyles);
+      jssStyles.parentElement?.removeChild(jssStyles)
     }
-  }, []);
-  const [themeMode, themeToggler, mountedComponent] = useDarkMode();
+  }, [])
+  const [themeMode, themeToggler, mountedComponent] = useDarkMode()
 
-  if (!mountedComponent) return <div />;
+  if (!mountedComponent) return <div />
 
   return (
     <ThemeProvider theme={getTheme(themeMode)}>
@@ -57,5 +57,5 @@ export default function WithLayout({
         </Layout>
       </Paper>
     </ThemeProvider>
-  );
+  )
 }

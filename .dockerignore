@@ -4,3 +4,6 @@ deployments/docker/Dockerfile
 .dockerignore
 .git
 .gitignore
+
+src
+scripts

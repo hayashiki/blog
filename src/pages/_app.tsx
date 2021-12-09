@@ -3,8 +3,8 @@
  *
  * You may delete this file and its occurrences from the project filesystem if you are using GatsbyJS or react-scripts version
  */
-import React from "react";
-import Head from "next/head";
+import React from 'react'
+import Head from 'next/head'
 
 // import 'react-lazy-load-image-component/src/effects/opacity.css';
 // import 'leaflet/dist/leaflet.css';
@@ -13,20 +13,17 @@ import Head from "next/head";
 // import 'aos/dist/aos.css';
 
 interface AppProps {
-  Component: any;
-  pageProps: any;
+  Component: any
+  pageProps: any
 }
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <React.Fragment>
       <Head>
-        <meta
-          name="viewport"
-          content="width=device-width,minimum-scale=1,initial-scale=1"
-        />
+        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
       </Head>
       <Component {...pageProps} />
     </React.Fragment>
-  );
+  )
 }

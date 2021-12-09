@@ -1,12 +1,12 @@
-import React from "react";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react'
+import clsx from 'clsx'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: theme.layout.contentWidth,
-    width: "100%",
-    margin: "0 auto",
+    width: '100%',
+    margin: '0 auto',
     padding: theme.spacing(6, 2),
     // [theme.breakpoints.up("sm")]: {
     //   padding: theme.spacing(8, 8)
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     // }
   },
   fullWidth: {
-    maxWidth: "100%",
+    maxWidth: '100%',
   },
   disablePadding: {
     padding: 0,
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   narrow: {
     maxWidth: 800,
   },
-}));
+}))
 
 const Section = ({
   children,
@@ -34,49 +34,49 @@ const Section = ({
   className,
   ...rest
 }: SectionProps): JSX.Element => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <section
       className={clsx(
-        "section",
+        'section',
         classes.root,
         fullWidth ? classes.fullWidth : {},
         narrow ? classes.narrow : {},
         disablePadding ? classes.disablePadding : {},
-        className
+        className,
       )}
       {...rest}
     >
       {children}
     </section>
-  );
-};
+  )
+}
 
-export default Section;
+export default Section
 
 interface SectionProps {
   /**
    * External classes
    */
-  className?: string;
+  className?: string
   /**
    * Children to placed inside the section
    */
-  children?: JSX.Element;
+  children?: JSX.Element
   /**
    * Should show narrow sections
    */
-  narrow?: boolean;
+  narrow?: boolean
   /**
    * Should the section be full width
    */
-  fullWidth?: boolean;
+  fullWidth?: boolean
   /**
    * Should the section render with no padding
    */
-  disablePadding?: boolean;
+  disablePadding?: boolean
 
   // All other props
-  [x: string]: any;
+  [x: string]: any
 }

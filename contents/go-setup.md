@@ -12,8 +12,8 @@ tags:
 
 # Why??
 
-初学者にGoのセットアップを聞かれる機会がちらほらあるので、
-ぐぐって記事さがすよりは自分で書いちゃってよいかなというモチベーション
+初学者にGoのセットアップ方法を聞かれる機会がちらほらあるので、
+このリンクを読んでおいてと案内できるものを自分で書いちゃってよいかなというモチベーション
 
 # Setup環境
 
@@ -22,20 +22,20 @@ tags:
 
 # 方針
 
-- 公式サイトからダウンロードする
-- brew経由でインストールしない
-- goenvなどのenv系は利用しない
+- 公式サイトからダウンロードしてパスを通す
+- brew経由などのパッケージマネージャでインストールしない
+- [goenv](https://github.com/syndbg/goenv)などのenv系は利用しない
 
 Goは後方互換性があるため、特別なことがない限り
-最新にバージョンをあげていけばよいので、goenvなどのバージョンツールは不要
+最新にバージョンをあげていけばよいので、goenvなどのバージョン管理ツールは不要
 
 # Install
 
 - [Go公式](https://golang.org/dl/)からtar.gz形式でダウンロードする
+- MacOSで 2021/10時点での最新バージョンはgo1.17.2.darwin-amd64.tar.gzが対象
 - ダウンロードファイルを`/user/local`に展開する
 
-
-``````sh
+```sh
 // 2021/10 時点での最新バージョン
 $ wget https://golang.org/dl/go1.17.2.darwin-amd64.tar.gz
 $ sudo tar -C /usr/local -xzf go1.17.2.darwin-amd64.tar.gz
@@ -43,6 +43,8 @@ $ rm go1.17.2.darwin-amd64.tar.gz
 ```
 
 # Add path to ~/.zshrc
+
+パスを通す
 
 ```
 $ vi ~/.zshrc
@@ -71,12 +73,12 @@ $ go version
 go version go1.17.2 darwin/amd64
 ```
 
-# バージョンアップ
+# バージョンアップ(追記)
 
 手順はインストール手順と同じである
 試しにv1.17.3がでていたので、インストールする
 
-```
+```:sh
 $ wget https://golang.org/dl/go1.17.3.darwin-amd64.tar.gz
 $ sudo tar -C /usr/local -xzf go1.17.3.darwin-amd64.tar.gz
 $ rm go1.17.3.darwin-amd64.tar.gz
@@ -84,9 +86,10 @@ $ go version
 go version go1.17.3 darwin/amd64
 ```
 
-# edit go.mod
+# go.modのバージョンアップ 
 
 go.mod記載のgoのバージョンを変更するには以下のコマンドで行う
+例として、go1.16 -> go1.17へ変更する
 
 ```
 $ go mod edit -go=1.17
@@ -103,4 +106,3 @@ index 282c25f..014df88 100644
 +go 1.17
 
 ```
-

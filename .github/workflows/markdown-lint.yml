@@ -1,0 +1,21 @@
+name: Lint Markdown
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+    paths:
+      - '**.md'
+      - 'contents/**'
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Lint markdown file
+        uses: docker://avtodev/markdown-lint:v1
+        with:
+          args: '**/*.md'
+          config: '.markdownlint.yml'

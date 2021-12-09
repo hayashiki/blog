@@ -1,25 +1,25 @@
-import React from "react";
-import { Avatar, makeStyles, Toolbar } from "@material-ui/core";
-import clsx from "clsx";
+import React from 'react'
+import { Avatar, makeStyles, Toolbar } from '@material-ui/core'
+import clsx from 'clsx'
 
 type Props = {
-  themeMode: string;
-  className?: string;
-  onMobileNavOpen: () => void;
-};
+  themeMode: string
+  className?: string
+  onMobileNavOpen: () => void
+}
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    width: "100%",
+    width: '100%',
     padding: theme.spacing(0, 2),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
       padding: theme.spacing(0, 8),
     },
   },
   logoContainer: {
     width: 56,
     height: 56,
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up('md')]: {
       width: 56,
       height: 56,
     },
@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
-}));
+}))
 
 //<Image width={150} height={150} src="/assets/xxx.png" />
 const Topbar = ({ themeMode, className, ...rest }: Props): JSX.Element => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <Toolbar className={clsx(classes.toolbar, className)} {...rest}>
@@ -44,14 +44,14 @@ const Topbar = ({ themeMode, className, ...rest }: Props): JSX.Element => {
         <Avatar
           className={classes.large}
           src={
-            themeMode === "light"
-              ? "/assets/blog-logo-oimo-type2.png"
-              : "/assets/blog-logo-oimo-type2.png"
+            themeMode === 'light'
+              ? '/assets/blog-logo-oimo-type2.png'
+              : '/assets/blog-logo-oimo-type2.png'
           }
         />
       </div>
     </Toolbar>
-  );
-};
+  )
+}
 
-export default Topbar;
+export default Topbar
