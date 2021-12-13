@@ -48,7 +48,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build
-        run: yarn export
+        run: yarn build
 
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
