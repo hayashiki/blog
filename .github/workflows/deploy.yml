@@ -74,6 +74,6 @@ jobs:
             --platform managed \
             --region ${{ env.REGION }} \
             --allow-unauthenticated \
-            --service-account {{ env.SERVICE_NAME }}@{{ env.GCP_PROJECT }}.iam.gserviceaccount.com
+            --service-account ${{ env.SERVICE_NAME }}@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com
 
 #          gcloud app deploy -q
