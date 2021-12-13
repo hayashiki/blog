@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "oimonotes-node",
     "ignore": [
       "firebase.json",
       "**/.*",

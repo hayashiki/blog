@@ -96,6 +96,11 @@ create-run-invoker-sa:
 		--display-name "$(SERVICE_NAME) service account"
 
 grant-role-sa:
+# not need...
+	gcloud iam service-accounts add-iam-policy-binding \
+	  ${GCP_PROJECT_NUMBER}-compute@developer.gserviceaccount.com \
+	  --member serviceAccount:${CLOUDRUN_SA} \
+	  --role="roles/iam.serviceAccountUser"
 	gcloud iam service-accounts add-iam-policy-binding ${CLOUDRUN_SA} \
 	  --member "serviceAccount:${CLOUDBUILD_SA}" \
 	  --role "roles/iam.serviceAccountUser"
