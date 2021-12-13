@@ -69,7 +69,7 @@ jobs:
 
       - name: Deploy
         run: |-
-          gcloud run deploy ${{ env.SERVICE_NAME }} --image gcr.io/${{ env.GCP_PROJECT }}/${{ env.SERVICE_NAME }}:${{ github.sha }} \
+          gcloud run deploy ${{ env.SERVICE_NAME }} --image gcr.io/${{ env.GCP_PROJECT }}/${{ env.SERVICE_NAME }}:latest \
             --project ${{ env.GCP_PROJECT }} \
             --platform managed \
             --region ${{ env.REGION }} \
