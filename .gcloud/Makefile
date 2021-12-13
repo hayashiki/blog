@@ -110,7 +110,7 @@ grant-role-sa:
 	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
 	  --member="serviceAccount:${CLOUDBUILD_SA}" \
 	  --role='roles/cloudbuild.builds.builder'
-	gcloud iam service-accounts add-iam-policy-binding ${GCP_PROJECT}-compute@developer.gserviceaccount.com \
+	gcloud iam service-accounts add-iam-policy-binding ${GCP_PROJECT_NUMBER}-compute@developer.gserviceaccount.com \
 	  --member="serviceAccount:${CLOUDBUILD_SA}" \
 	  --role='roles/iam.serviceAccountUser'
 
