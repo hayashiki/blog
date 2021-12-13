@@ -113,10 +113,10 @@ grant-role-sa:
 	gcloud iam service-accounts add-iam-policy-binding ${GCP_PROJECT_NUMBER}-compute@developer.gserviceaccount.com \
 	  --member="serviceAccount:${CLOUDBUILD_SA}" \
 	  --role='roles/iam.serviceAccountUser'
-	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \ #	# Grant the Cloud Run Admin role to the Cloud Build service account
+	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
 	  --member "serviceAccount:${GCP_PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
 	  --role roles/run.admin
-	gcloud iam service-accounts add-iam-policy-binding \ # Grant the IAM Service Account User role to the Cloud Build service account on the Cloud Run runtime service account
+	gcloud iam service-accounts add-iam-policy-binding \
 	  $GC_PROJECT_NUMBER-compute@developer.gserviceaccount.com \
 	  --member="serviceAccount:${GCP_PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
 	  --role="roles/iam.serviceAccountUser"
