@@ -6,8 +6,11 @@ WORKLOAD_IDENTITY_POOL_ID=$(shell gcloud iam workload-identity-pools describe "$
 GITHUB_REPO=hayashiki/blog # コレでいけそう？ git config remote.origin.url | cut -d : -f 2 | sed 's/.git//'
 PROVIDER_NAME=gha-provider
 CI_SA_EMAIL = "ci-user@${GCP_PROJECT}.iam.gserviceaccount.com"
-#CLOUDBUILD_SA=${GCP_PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
+CLOUDBUILD_SA=${GCP_PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
 BUILD_DATE  := $(shell date +%FT%T%z)
+
+SERVICE_NAME := oimonotes-node
+CLOUDRUN_SA=${SERVICE_NAME}@${GCP_PROJECT}.iam.gserviceaccount.com
 
 .DEFAULT_GOAL := help
 .PHONY: *
@@ -83,3 +86,16 @@ create-provider: ## PoolにProviderを作成する
 	--display-name="use from GitHub Actions provider" \
 	--attribute-mapping="google.subject=assertion.sub,attribute.repository=assertion.repository,attribute.actor=assertion.actor,attribute.aud=assertion.aud" \
 	--issuer-uri="https://token.actions.githubusercontent.com"
+
+
+########################
+### Cloud Run        ###
+########################
+create-run-invoker-sa:
+	gcloud iam service-accounts create $(SERVICE_NAME) \
+		--display-name "$(SERVICE_NAME) service account"
+
+grant-role-sa:
+	gcloud iam service-accounts add-iam-policy-binding ${CLOUDRUN_SA} \
+	  --member "serviceAccount:${CLOUDBUILD_SA}" \
+	  --role "roles/iam.serviceAccountUser"
