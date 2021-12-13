@@ -10,14 +10,14 @@ function Index({ stars }: Props) {
   return (
     <div>
       <p>Next.js has {stars} ⭐️</p>
-      <Link href="/get-static-props">
-        <a>Go to getStaticProps</a>
+      <Link href="/get-server-side-props">
+        <a>Go to getServerSideProps</a>
       </Link>
     </div>
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch('https://api.github.com/repos/zeit/next.js')
   const json = await res.json()
   return {

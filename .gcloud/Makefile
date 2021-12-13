@@ -104,3 +104,6 @@ grant-role-sa:
 	gcloud iam service-accounts add-iam-policy-binding ${CLOUDRUN_SA} \
 	  --member "serviceAccount:${CLOUDBUILD_SA}" \
 	  --role "roles/iam.serviceAccountUser"
+	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
+		--member serviceAccount:${CLOUDBUILD_SA} \
+		--role roles/run.admin
