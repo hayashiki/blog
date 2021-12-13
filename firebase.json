@@ -5,6 +5,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "predeploy": "yarn export",
     "public": "dist",
     "cleanUrls": true,
     "rewrites": [
