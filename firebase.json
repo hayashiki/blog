@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "site": "oimonotes-web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "public": "dist",
+    "cleanUrls": true,
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "oimonotes-web",
+          "region": "asia-northeast1"
+        }
+      }
+    ]
+  }
+}

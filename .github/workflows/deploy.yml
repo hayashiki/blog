@@ -11,6 +11,8 @@ jobs:
     env:
       GCP_PROJECT: oimonotes
       GCP_PROJECT_NUM: 353815249791
+      REGION: asia-northeast1
+      SERVICE_NAME: oimonotes-node
 
     # Add "id-token" with the intended permissions.
     permissions:
@@ -20,7 +22,7 @@ jobs:
     steps:
       - uses: 'google-github-actions/setup-gcloud@master'
         with:
-          project_id: oimonotes
+          project_id: ${{ env.GCP_PROJECT }}
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -59,4 +61,17 @@ jobs:
         name: 'Authenticate and deploy'
         run: |-
           gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
-          gcloud app deploy -q
+          docker build -t ${SERVICE_NAME} .
+          docker tag SERVICE_NAME gcr.io/${GCP_PROJECT}/${SERVICE_NAME}:latest # github.shaとかコミットハッシュつけたほうがよい
+          docker push gcr.io/${GCP_PROJECT}/${SERVICE_NAME}:latest # github.shaとかコミットハッシュつけたほうがよい
+
+      - name: Deploy
+        run: |-
+          gcloud run deploy ${{ env.SERVICE_NAME }} --image gcr.io/${{ env.GCP_PROJECT }}/${{ env.SERVICE_NAME }}:${{ github.sha }} \
+            --project ${{ env.GCP_PROJECT }} \
+            --platform managed \
+            --region ${{ env.REGION }} \
+            --allow-unauthenticated
+#            --service-account go-boiler-api@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com \
+
+#          gcloud app deploy -q
