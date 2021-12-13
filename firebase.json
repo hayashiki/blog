@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "oimonotes-web",
+    "site": "oimonotes-node",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,7 +12,7 @@
       {
         "source": "**",
         "run": {
-          "serviceId": "oimonotes-web",
+          "serviceId": "oimonotes-node",
           "region": "asia-northeast1"
         }
       }

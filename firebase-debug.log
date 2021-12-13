@@ -1,0 +1,88 @@
+[debug] [2021-12-13T10:01:28.328Z] ----------------------------------------------------------------------
+[debug] [2021-12-13T10:01:28.330Z] Command:       /Users/hayashiki/.nodenv/versions/16.13.0/bin/node /Users/hayashiki/src/github.com/hayashiki/blog/node_modules/.bin/firebase deploy
+[debug] [2021-12-13T10:01:28.330Z] CLI Version:   9.5.0
+[debug] [2021-12-13T10:01:28.330Z] Platform:      darwin
+[debug] [2021-12-13T10:01:28.330Z] Node Version:  v16.13.0
+[debug] [2021-12-13T10:01:28.331Z] Time:          Mon Dec 13 2021 19:01:28 GMT+0900 (Japan Standard Time)
+[debug] [2021-12-13T10:01:28.332Z] ----------------------------------------------------------------------
+[debug] [2021-12-13T10:01:28.332Z] 
+[debug] [2021-12-13T10:01:28.339Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-12-13T10:01:28.339Z] > authorizing via signed-in user
+[debug] [2021-12-13T10:01:28.339Z] [iam] checking project oimonotes for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-12-13T10:01:28.341Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-12-13T10:01:28.341Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-12-13T10:01:28.566Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Mon, 13 Dec 2021 10:01:28 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-13T10:01:28.592Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/oimonotes:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-12-13T10:01:29.326Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 13 Dec 2021 10:01:29 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=616","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-13T10:01:29.328Z] > refreshing access token with scopes: []
+[debug] [2021-12-13T10:01:29.328Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-12-13T10:01:29.502Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Mon, 13 Dec 2021 10:01:29 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-13T10:01:29.527Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/oimonotes [none]
+[debug] [2021-12-13T10:01:30.050Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/oimonotes 200
+[debug] [2021-12-13T10:01:30.050Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/oimonotes {"projectId":"oimonotes","projectNumber":"353815249791","displayName":"oimonotes","name":"projects/oimonotes","resources":{"hostingSite":"oimonotes","storageBucket":"oimonotes.appspot.com","locationId":"asia-northeast1"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'oimonotes'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-12-13T10:01:30.054Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-12-13T10:01:30.054Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-12-13T10:01:30.219Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Mon, 13 Dec 2021 10:01:30 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-13T10:01:30.245Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/oimonotes-node/versions  
+ {"config":{"rewrites":[{"glob":"**","run":{"region":"asia-northeast1","serviceId":"oimonotes-node"}}],"cleanUrls":true},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-12-13T10:01:31.234Z] <<< HTTP RESPONSE 500 {"vary":"X-Origin, Referer, Origin,Accept-Encoding","content-type":"application/json; charset=UTF-8","date":"Mon, 13 Dec 2021 10:01:31 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-12-13T10:01:31.234Z] <<< HTTP RESPONSE BODY {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2021-12-13T10:01:31.406Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Mon, 13 Dec 2021 10:01:31 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/oimonotes-node/versions",
+        "path": "/v1beta1/sites/oimonotes-node/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/oimonotes-node/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
