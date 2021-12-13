@@ -52,9 +52,6 @@ binding: ## CIユーザにデプロイに必要な権限を付与する
 	  --role='roles/appengine.appAdmin'
 	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
 	  --member="serviceAccount:${CI_SA_EMAIL}" \
-	  --role='roles/run.admin'
-	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
-	  --member="serviceAccount:${CI_SA_EMAIL}" \
 	  --role='roles/cloudbuild.builds.builder'
 	gcloud iam service-accounts add-iam-policy-binding ${GCP_PROJECT}@appspot.gserviceaccount.com \
 	  --member="serviceAccount:${CI_SA_EMAIL}" \
@@ -107,3 +104,24 @@ grant-role-sa:
 	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
 		--member serviceAccount:${CLOUDBUILD_SA} \
 		--role roles/run.admin
+	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
+	  --member="serviceAccount:${CLOUDBUILD_SA}" \
+	  --role='roles/run.admin'
+	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
+	  --member="serviceAccount:${CLOUDBUILD_SA}" \
+	  --role='roles/cloudbuild.builds.builder'
+	gcloud iam service-accounts add-iam-policy-binding ${GCP_PROJECT}-compute@developer.gserviceaccount.com \
+	  --member="serviceAccount:${CLOUDBUILD_SA}" \
+	  --role='roles/iam.serviceAccountUser'
+
+#	# Grant the Cloud Run Admin role to the Cloud Build service account
+#	gcloud projects add-iam-policy-binding $GC_PROJECT \
+#	  --member "serviceAccount:$GC_PROJECT_NUMBER@cloudbuild.gserviceaccount.com" \
+#	  --role roles/run.admin
+#
+#	# Grant the IAM Service Account User role to the Cloud Build service account on the Cloud Run runtime service account
+#	gcloud iam service-accounts add-iam-policy-binding \
+#	  $GC_PROJECT_NUMBER-compute@developer.gserviceaccount.com \
+#	  --member="serviceAccount:$GC_PROJECT_NUMBER@cloudbuild.gserviceaccount.com" \
+#	  --role="roles/iam.serviceAccountUser"
+

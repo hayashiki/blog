@@ -7,6 +7,8 @@ type Props = {
 }
 
 function Index({ stars }: Props) {
+  console.log("Index 1214")
+
   return (
     <div>
       <p>Next.js has {stars} ⭐️</p>
