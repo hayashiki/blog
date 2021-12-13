@@ -22,6 +22,7 @@ help: ## Show help
 enable: ## APIを有効化する
 	gcloud services enable iamcredentials.googleapis.com --project ${GCP_PROJECT} # for WorkloadIdentify
 	gcloud services enable appengine.googleapis.com --project ${GCP_PROJECT} # for GAE
+	gcloud services enable run.googleapis.com --project ${GCP_PROJECT} # for Run
 
 
 ########################
@@ -33,7 +34,7 @@ create-ci-sa: ## CIユーザを作成する
 		--project=${GCP_PROJECT} \
 		--display-name "CI User Service Account"
 
-bind: ## CIユーザにデプロイに必要な権限を付与する
+binding: ## CIユーザにデプロイに必要な権限を付与する
 	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
 	  --member="serviceAccount:${CI_SA_EMAIL}" \
 	  --role='roles/compute.storageAdmin'
@@ -46,6 +47,9 @@ bind: ## CIユーザにデプロイに必要な権限を付与する
 	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
 	  --member="serviceAccount:${CI_SA_EMAIL}" \
 	  --role='roles/appengine.appAdmin'
+	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
+	  --member="serviceAccount:${CI_SA_EMAIL}" \
+	  --role='roles/run.admin'
 	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
 	  --member="serviceAccount:${CI_SA_EMAIL}" \
 	  --role='roles/cloudbuild.builds.builder'
