@@ -120,4 +120,7 @@ grant-role-sa:
 	  $GC_PROJECT_NUMBER-compute@developer.gserviceaccount.com \
 	  --member="serviceAccount:${GCP_PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
 	  --role="roles/iam.serviceAccountUser"
+	gcloud iam service-accounts add-iam-policy-binding ${CI_SA_EMAIL} \
+	  --member="serviceAccount:${GCP_PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
+	  --role="roles/iam.serviceAccountUser"
 
