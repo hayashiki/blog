@@ -63,10 +63,13 @@ jobs:
           service_account: ci-user@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com
 
       - id: 'gcloud'
-        name: 'Authenticate and deploy'
+        name: Authenticate
         run: |-
           gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
           gcloud --quiet auth configure-docker
+
+      - name: Docker Build
+        run: |-
           docker build -t ${{ env.SERVICE_NAME }} .
           docker tag ${{ env.SERVICE_NAME }} gcr.io/${{ env.GCP_PROJECT }}/${{env.SERVICE_NAME}}:latest
           docker push gcr.io/${{ env.GCP_PROJECT }}/${{env.SERVICE_NAME}}:latest
@@ -77,6 +80,6 @@ jobs:
             --project ${{ env.GCP_PROJECT }} \
             --platform managed \
             --region ${{ env.REGION }} \
-            --service-account oimonotes-node@oimonotes.iam.gserviceaccount.com \
+            --service-account ${{ env.SERVICE_NAME }}@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com \
             --allow-unauthenticated
 #          gcloud app deploy -q
