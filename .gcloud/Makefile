@@ -7,6 +7,8 @@ GITHUB_REPO=hayashiki/blog # コレでいけそう？ git config remote.origin.u
 PROVIDER_NAME=gha-provider
 CI_SA_EMAIL = "ci-user@${GCP_PROJECT}.iam.gserviceaccount.com"
 CLOUDBUILD_SA=${GCP_PROJECT_NUMBER}@cloudbuild.gserviceaccount.com
+COMPUTE_SA:=${GCP_PROJECT_NUMBER}-compute@developer.gserviceaccount.com
+GAE_SA:=${GCP_PROJECT}@appspot.gserviceaccount.com
 BUILD_DATE  := $(shell date +%FT%T%z)
 
 SERVICE_NAME := oimonotes-node
@@ -53,7 +55,10 @@ binding: ## CIユーザにデプロイに必要な権限を付与する
 	gcloud projects add-iam-policy-binding ${GCP_PROJECT} \
 	  --member="serviceAccount:${CI_SA_EMAIL}" \
 	  --role='roles/cloudbuild.builds.builder'
-	gcloud iam service-accounts add-iam-policy-binding ${GCP_PROJECT}@appspot.gserviceaccount.com \
+	gcloud iam service-accounts add-iam-policy-binding ${GAE_SA} \
+	  --member="serviceAccount:${CI_SA_EMAIL}" \
+	  --role='roles/iam.serviceAccountUser'
+	gcloud iam service-accounts add-iam-policy-binding $(COMPUTE_SA) \
 	  --member="serviceAccount:${CI_SA_EMAIL}" \
 	  --role='roles/iam.serviceAccountUser'
 
