@@ -6,7 +6,7 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/core/styles'
-import BLOG from '../../blog.config'
+import { website } from '@/../blog.config'
 
 export default class MyDocument extends Document {
   render() {
@@ -21,21 +21,21 @@ export default class MyDocument extends Document {
           />
           <link rel="icon" type="image/png" href="/assets/icon-192x192.png" />
 
-          <meta name="theme-color" content="#ffffff" />
-          <meta
-            name="description"
-            content="A modern design system for your new landing and web pages."
-          />
-          <meta
-            name="robots"
-            content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-          />
-          <meta property="og:locale" content="ja_JP" />
-          <meta property="og:type" content="website" />
-          <meta property="og:image" content="" />
-          <meta property="og:title" content="hayashida.dev | TechBlog" />
-          <meta property="og:description" content="web pages created by hayashiki" />
-          <meta property="og:url" content="" />
+          {/*<meta name="theme-color" content="#ffffff" />*/}
+          {/*<meta*/}
+          {/*  name="description"*/}
+          {/*  content="A modern design system for your new landing and web pages."*/}
+          {/*/>*/}
+          {/*<meta*/}
+          {/*  name="robots"*/}
+          {/*  content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"*/}
+          {/*/>*/}
+          {/*<meta property="og:locale" content="ja_JP" />*/}
+          {/*<meta property="og:type" content="website" />*/}
+          {/*<meta property="og:image" content="" />*/}
+          {/*<meta property="og:title" content="hayashida.dev | TechBlog" />*/}
+          {/*<meta property="og:description" content="web pages created by hayashiki" />*/}
+          {/*<meta property="og:url" content="" />*/}
           <link
             href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap"
             rel="stylesheet"
@@ -47,7 +47,7 @@ export default class MyDocument extends Document {
           <NextScript />
           <script
             async
-            src={`https://www.googletagmanager.com/gtag/js?id=${BLOG.googleAnalytics}`}
+            src={`https://www.googletagmanager.com/gtag/js?id=${website.googleAnalytics}`}
           />
           <script
             async
@@ -56,7 +56,7 @@ export default class MyDocument extends Document {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${BLOG.googleAnalytics}');
+              gtag('config', '${website.googleAnalytics}');
               `,
             }}
           />
