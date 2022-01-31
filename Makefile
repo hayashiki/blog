@@ -1,6 +1,7 @@
 CURRENT_REVISION := $(shell git rev-parse --short HEAD)
 VERSION := "TODO"
 GCP_PROJECT := $(shell gcloud config get-value project)
+SERVICE_NAME := oimonotes-node
 
 .DEFAULT_GOAL := help
 .PHONY: $(shell grep -E '^[a-zA-Z_-]+:' $(MAKEFILE_LIST) | sed 's/://')
@@ -28,3 +29,16 @@ deploy: ## localでデプロイ
 
 fmt-markdown: ## markdownをフォーマットする
 	docker run --rm -v "$(pwd):/data" -e INPUT_CONFIG=/data/.markdownlint.yml avtodev/markdown-lint:v1 /data/contents
+
+fb-deploy:
+	yarn export
+	firebase deploy
+
+run-build:
+	gcloud builds submit --tag gcr.io/$(GCP_PROJECT)/$(SERVICE)
+
+run-deploy:
+	docker build -t ${SERVICE_NAME} .
+	docker tag SERVICE_NAME gcr.io/${GCP_PROJECT}/${SERVICE_NAME}:latest # github.shaとかコミットハッシュつけたほうがよい
+	docker push gcr.io/${GCP_PROJECT}/${SERVICE_NAME}:latest # github.shaとかコミットハッシュつけたほうがよい
+	gcloud run deploy $(SERVICE_NAME) --image gcr.io/$(GCP_PROJECT)/$(SERVICE_NAME) --platform managed --region asia-northeast1

@@ -1,9 +1,9 @@
 ---
-title: Githubプロジェクトボード登録自動化を実装した
+title: GitHubプロジェクトボード登録自動化を実装した
 slug: github-actions-issue
 timestamp: '2021-03-8T04:13:56+00:00'
+description: GitHub ActionsでIssueやPR管理を自動化したい場合にはGitHubマーケットプレイスから探すのもいいが、 ある程度クエリをパターン化しておいて、自作するのも一つの手であるという話
 date: 2021/3/4
-tag: GitHub,CI/CD
 tags:
   - GitHub
   - Workflow
@@ -11,6 +11,8 @@ tags:
   - Automation  
 categories:
   - NodeJS
+images:
+  - assets/blog-logo-oimo.png
 ---
 
 # TL;DR

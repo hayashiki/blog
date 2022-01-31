@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "predeploy": "yarn export",
+    "public": "dist",
+    "cleanUrls": true,
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "oimonotes-node",
+          "region": "asia-northeast1"
+        }
+      }
+    ]
+  }
+}
