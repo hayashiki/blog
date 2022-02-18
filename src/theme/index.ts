@@ -4,9 +4,6 @@ import { PaletteType } from '@material-ui/core'
 const getTheme = (mode: any) =>
   responsiveFontSizes(
     createMuiTheme({
-      layout: {
-        contentWidth: 860,
-      },
       palette: mode === 'light' ? light : dark,
       typography: {
         fontFamily: 'Noto Sans JP', //;"Mono", // Lato.

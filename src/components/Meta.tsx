@@ -8,7 +8,6 @@ type MetaProps = {
   image?: string
 }
 
-// <Meta title={page?.page_title} description={page?.page_description} />
 const Meta: React.FC<MetaProps> = ({ title, description, canonical, image }) => (
   <Head>
     <title>{title}</title>

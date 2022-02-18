@@ -1,7 +1,6 @@
 ---
-title: GitHubプロジェクトボード登録自動化を実装した
+title: GitHubのIssueの新規登録時にプロジェクトボードに自動に登録するワークフローを組んだ
 slug: github-actions-issue
-timestamp: '2021-03-8T04:13:56+00:00'
 description: GitHub ActionsでIssueやPR管理を自動化したい場合にはGitHubマーケットプレイスから探すのもいいが、 ある程度クエリをパターン化しておいて、自作するのも一つの手であるという話
 date: 2021/3/4
 tags:

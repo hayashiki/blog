@@ -1,16 +1,9 @@
-/**
- * Caution: Consider this file when using NextJS
- *
- * You may delete this file and its occurrences from the project filesystem if you are using GatsbyJS or react-scripts version
- */
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
-
-// import 'react-lazy-load-image-component/src/effects/opacity.css';
-// import 'leaflet/dist/leaflet.css';
-// import 'assets/css/index.css';
-// import 'swiper/css/swiper.min.css';
-// import 'aos/dist/aos.css';
+import { useAnalytics } from '@/lib/analytics'
+import { ThemeProvider } from '@material-ui/styles'
+import getTheme from '@/theme'
+import { CssBaseline, Paper } from '@material-ui/core'
 
 interface AppProps {
   Component: any
@@ -18,12 +11,25 @@ interface AppProps {
 }
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
+  useAnalytics()
+
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side')
+    if (jssStyles) {
+      jssStyles.parentElement?.removeChild(jssStyles)
+    }
+  }, [])
+  // const [themeMode, themeToggler, mountedComponent] = useDarkMode()
+
+  // if (!mountedComponent) return <div />
+
   return (
-    <React.Fragment>
-      <Head>
-        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
-      </Head>
-      <Component {...pageProps} />
-    </React.Fragment>
+    <ThemeProvider theme={getTheme('light')}>
+      <CssBaseline />
+      <Paper elevation={0}>
+        <Component {...pageProps} />
+      </Paper>
+    </ThemeProvider>
   )
 }

@@ -1,9 +1,8 @@
 {
   "root": true,
-  "plugins": ["jest", "react"],
+  "plugins": ["react"],
   "env": {
-    "es2020": true,
-    "jest/globals": true
+    "es2020": true
   },
   "extends": [
     "eslint:recommended",

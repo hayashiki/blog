@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-const dirPath = path.join('contents')
+const dirPath = path.join('contents/posts')
 
 export const getFilenames = (): string[] => {
   const files = fs.readdirSync(dirPath)

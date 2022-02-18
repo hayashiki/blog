@@ -1,9 +1,9 @@
 import React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Article from '@/views/Article/Article'
-import WithLayout from '@/layouts/WithLayout'
-import Minimal from '@/layouts/Minimal'
 import { getFilenames, getFileContentWithMeta } from '@/lib/fileInfo'
+import { BlogSEO } from '@/components/SEO'
+import BaseLayout from '@/layouts/BaseLayout'
 
 export type ArticleProps = {
   metadata: Metadata
@@ -15,13 +15,29 @@ export type Metadata = {
   slug: string
   timestamp: string
   date: string
-  tag: string
   description: string
   tags: Array<string>
+  images: Array<string>
+  lastMod?: string
 }
 
 const ArticlePage: React.FC<ArticleProps> = ({ contents, metadata }) => {
-  return <WithLayout component={Article} layout={Minimal} contents={contents} metadata={metadata} />
+  return (
+    <>
+      <BlogSEO
+        title={metadata.title}
+        date={metadata.date}
+        description={metadata.description}
+        images={metadata.images}
+        slug={metadata.slug}
+        tags={metadata.tags}
+        timestamp={metadata.timestamp}
+      />
+      <BaseLayout themeMode={'light'}>
+        <Article metadata={metadata} contents={contents} />
+      </BaseLayout>
+    </>
+  )
 }
 
 export default ArticlePage

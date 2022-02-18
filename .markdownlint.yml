@@ -1,9 +1,6 @@
+#　see all rules -> https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
 default: false # includes/excludes all rules by default
-
-# Heading levels should only increment by one level at a time <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md001>
 MD001: true
-
-# Heading style <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md003>
 MD003: true
 
 # Unordered list style <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md004>
@@ -58,8 +55,8 @@ MD023: true
 MD024:
   allow_different_nesting: true
 
-# Multiple top level headings in the same document <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md025>
-MD025: true
+# 重複h1タグ->h1複数利用は問題ないのでfalseにした
+MD025: false
 
 # Trailing punctuation in heading <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md026>
 MD026: true
@@ -74,7 +71,6 @@ MD028: false
 MD029:
   style: 'one'
 
-# Spaces after list markers <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md030>
 MD030: true
 
 # Fenced code blocks should be surrounded by blank lines <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md031>
@@ -105,8 +101,8 @@ MD038: true
 # Spaces inside link text <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md039>
 MD039: true
 
-# Fenced code blocks should have a language specified <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md040>
-MD040: true
+# コードブロックに言語指定を必須とする -> 特に言語指定しなくても問題なし
+MD040: false
 
 # First line in file should be a top level heading <https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md#md041>
 MD041: true

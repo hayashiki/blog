@@ -8,16 +8,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     env:
-      GCP_PROJECT: ddddddddddt
-      GCP_PROJECT_NUM: 699227089638
+      GCP_PROJECT: oimonotes
+      GCP_PROJECT_NUM: 353815249791
       REGION: asia-northeast1
-      SERVICE_NAME: cloud-run-service-node-server
-#      GCP_PROJECT: oimonotes
-#      GCP_PROJECT_NUM: 353815249791
-#      REGION: asia-northeast1
-#      SERVICE_NAME: oimonotes-node
+      SERVICE_NAME: oimonotes-node
 
     # Add "id-token" with the intended permissions.
     permissions:

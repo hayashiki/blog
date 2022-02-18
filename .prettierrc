@@ -1,0 +1,10 @@
+{
+  "tabWidth": 2,
+  "singleQuote": true,
+  "semi": false,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "useTabs": false,
+  "importOrder": ["^@/(.*)$", "^[./]"],
+  "importOrderSeparation": true
+}

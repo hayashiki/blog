@@ -7,6 +7,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { Variant } from '@material-ui/core/styles/createTypography'
 import {
   Box,
+  Container,
   Grid,
   Link,
   makeStyles,
@@ -19,7 +20,6 @@ import {
 import TableContainer from '@material-ui/core/TableContainer'
 import Table from '@material-ui/core/Table'
 import { ArticleProps } from '@/pages/articles/[slug]'
-import Section from '@/components/Section'
 // import { darcula } from "react-syntax-highlighter/dist/cjs/styles/prism"
 import { okaidia as theme } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import coy from 'react-syntax-highlighter/dist/cjs/styles/prism/coy'
@@ -27,10 +27,11 @@ import { Theme } from '@material-ui/core/styles/createMuiTheme'
 
 const useStyles = makeStyles((theme: Theme) => ({
   section: {
-    marginBottom: theme.spacing(1),
-    [theme.breakpoints.up('md')]: {
-      marginBottom: theme.spacing(2),
-    },
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(0),
+    // [theme.breakpoints.up('md')]: {
+    //   marginBottom: theme.spacing(2),
+    // },
   },
   li: {
     // eslint-disable-next-line no-magic-numbers
@@ -65,53 +66,30 @@ const useStyles = makeStyles((theme: Theme) => ({
       margin: theme.spacing(0, 2, 2, 0),
     },
   },
-  root: {
-    ...theme.typography.body1,
-    color: theme.palette.text.primary,
-    wordBreak: 'break-word',
-    '& .anchor-link': {
-      marginTop: -96,
-      position: 'absolute',
-    },
-    paddingTop: 0,
-  },
 }))
 
 const Article: React.FC<ArticleProps> = ({ contents, metadata }) => {
   const classes = useStyles()
   return (
-    <>
-      <Head>
-        <title>{metadata.title}</title>
-      </Head>
-      <div>
-        <Section className={classes.noPaddingBottom}>
-          <>
-            <Grid item xs={12} className="section-header__title-wrapper">
-              <Typography variant="h1" align="center">
-                {metadata.title}
-              </Typography>
-            </Grid>
-            <Grid container justify={'center'} alignItems="center" wrap="nowrap">
-              <div className={classes.tags}>
-                {metadata.tags.map((item, index) => (
-                  <Typography variant="caption" color="primary" className={classes.tag} key={index}>
-                    {item}
-                  </Typography>
-                ))}
-              </div>
-            </Grid>
-          </>
-        </Section>
-        <Section className={classes.root}>
-          <Grid container spacing={1}>
-            <Grid item xs={12} md={12}>
-              <ReactMarkdown source={contents} plugins={[gfm, breaks]} renderers={renderers} />
-            </Grid>
-          </Grid>
-        </Section>
-      </div>
-    </>
+    <Container maxWidth="md">
+      <Box mt={2}>
+        <Typography variant="h1" align="center">
+          {metadata.title}
+        </Typography>
+      </Box>
+      <Grid container justify={'center'} alignItems="center" wrap="nowrap">
+        <div className={classes.tags}>
+          {metadata.tags.map((item, index) => (
+            <Typography variant="caption" color="primary" className={classes.tag} key={index}>
+              {item}
+            </Typography>
+          ))}
+        </div>
+      </Grid>
+      <Box mb={8}>
+        <ReactMarkdown source={contents} plugins={[gfm, breaks]} renderers={renderers} />
+      </Box>
+    </Container>
   )
 }
 

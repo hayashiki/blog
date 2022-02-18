@@ -2,7 +2,6 @@
 title: CloudRunのCI/CDを構築する
 slug: how-to-deploy-cloudrun
 description: CloudRunで継続デプロイする際の設定をまとめた
-timestamp: '2022-01-25T13:21:56+00:00'
 date: 2022/1/25
 tags:
     - CloudRun
