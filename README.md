@@ -1,8 +1,4 @@
 # blog
 
-Blog Repository
-
-https://oimonotes.web.app
-https://oimonotes-node-4tvd5yuhtq-an.a.run.app
-
-/articles/github-actions-issue/
+My Blog Repository
+This Repository is built on nextjs
