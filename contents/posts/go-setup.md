@@ -2,8 +2,7 @@
 title: Goのセットアップ方法
 slug: go-setup
 description: Goのセットアップ方法について整理した
-timestamp: '2021-03-8T04:13:56+00:00'
-date: 2021/3/4
+date: 2021/4/7
 tags:
     - Go
     - これ読んでおいて

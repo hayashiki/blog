@@ -1,7 +1,6 @@
 ---
 title: puppeteerでファイルをダウンロードを実装する
 slug: puppeteer-file-download
-timestamp: '2022-12-27T04:13:56+00:00'
 date: 2022/12/27
 description: 例えば、領収書や請求書などの書類の月次ダウンロードを定型業務がある会社は多いはず。その定型業務を自動化するソリューションとしてユースケースを単純化したサンプルを紹介する
 tags:
@@ -47,7 +46,7 @@ images:
 [github-page機能でのホスティング](https://hayashiki.github.io/dummy-static-site)にてPDFをaタグをdownload属性をつけてgithub-pageにホストしたページを作成している
 このサイトを請求書等が置かれている想定でブラウザで自動ダウンロードさせる想定
 
-![img.png](src/images/img2.png)
+![img.png](/attachments/img2.png)
 
 ### アプリケーション構成
 
@@ -214,7 +213,7 @@ COPY --chown=pptruser:pptruser package*.json ./
 
 RUN yarn install
 
-COPY --chown=pptruser:pptruser .. .
+COPY --chown=pptruser:pptruser ../../.. .
 
 CMD ["yarn", "start"]
 
@@ -326,11 +325,11 @@ jobs:
           path: downloads
 ```
 
-![img.png](src/images/img.png)
+Artifactsにアップロードされていることが確認できる
 
-## まとめ
+![img.png](/attachments/img.png)
+
+## 補足
 
 副次的な話になるが、 ミニマムなpuppeteer検証環境があることで、予期せぬ挙動があったときに
-それがHeadlessChrome、Node、puppeteerのバージョンのどれが原因か切り分けやすい＆Vup検証が容易になったのがよかった
-
-
+それがHeadlessChrome、Node、puppeteerのバージョンのどれが原因か切り分けやすくなった

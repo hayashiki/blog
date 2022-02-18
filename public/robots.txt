@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hayashida.dev
+
+# Sitemaps
+Sitemap: https://hayashida.dev/sitemap.xml
