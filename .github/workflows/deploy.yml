@@ -8,22 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      GCP_PROJECT: oimonotes
-      GCP_PROJECT_NUM: 353815249791
-      REGION: asia-northeast1
-      SERVICE_NAME: oimonotes-node
-
-    # Add "id-token" with the intended permissions.
-    permissions:
-      contents: read
-      id-token: 'write'
-
     steps:
-      - uses: 'google-github-actions/setup-gcloud@master'
-        with:
-          project_id: ${{ env.GCP_PROJECT }}
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -43,38 +28,19 @@ jobs:
         with:
           node-version: 16.x
 
+      - name: export config from secrets
+        run: |
+          echo "${{ secrets.FIREBASE_CONFIG }}" > ./src/lib/config.json
+
       - name: Install
         run: yarn install --frozen-lockfile
 
       - name: Build
-        run: yarn build
+        run: yarn export
 
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0.3.1'
+      - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          create_credentials_file: true
-          workload_identity_provider: projects/${{ env.GCP_PROJECT_NUM }}/locations/global/workloadIdentityPools/github-actions/providers/gha-provider
-          service_account: ci-user@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com
-
-      - id: 'gcloud'
-        name: Authenticate
-        run: |-
-          gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
-          gcloud --quiet auth configure-docker
-
-      - name: Docker Build
-        run: |-
-          docker build -t ${{ env.SERVICE_NAME }} .
-          docker tag ${{ env.SERVICE_NAME }} gcr.io/${{ env.GCP_PROJECT }}/${{env.SERVICE_NAME}}:latest
-          docker push gcr.io/${{ env.GCP_PROJECT }}/${{env.SERVICE_NAME}}:latest
-
-      - name: Deploy
-        run: |-
-          gcloud run deploy ${{ env.SERVICE_NAME }} --image gcr.io/${{ env.GCP_PROJECT }}/${{ env.SERVICE_NAME }}:latest \
-            --project ${{ env.GCP_PROJECT }} \
-            --platform managed \
-            --region ${{ env.REGION }} \
-            --service-account ${{ env.SERVICE_NAME }}@${{ env.GCP_PROJECT }}.iam.gserviceaccount.com \
-            --allow-unauthenticated
-#          gcloud app deploy -q
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_OIMONOTES }}'
+          channelId: live
+          projectId: oimonotes
