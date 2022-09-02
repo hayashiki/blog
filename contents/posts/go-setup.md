@@ -83,6 +83,8 @@ go version go1.17.2 darwin/amd64
 ```:sh
 $ wget https://golang.org/dl/go1.17.3.darwin-amd64.tar.gz
 $ sudo tar -C /usr/local -xzf go1.17.3.darwin-amd64.tar.gz
+// Remove all the extracted files
+$ sudo rm -rf /usr/local/go
 $ rm go1.17.3.darwin-amd64.tar.gz
 $ go version                                              
 go version go1.17.3 darwin/amd64
